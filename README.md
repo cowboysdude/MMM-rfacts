@@ -1,10 +1,12 @@
 # MMM-rfacts
 Random Facts for MagicMirror2
 
-# Just install it.....NO dependencies!!
+# Just install it.....
 
     ~/MagicMirror/modules
     git clone https://github.com/cowboysdude/MMM-rfact
+    cd MagicMirror/modules/MMM-rfacts
+    npm install
     
 #  Add it to your config...
 
