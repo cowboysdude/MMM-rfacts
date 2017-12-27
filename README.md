@@ -1,6 +1,9 @@
 # MMM-rfacts
 Random Facts for MagicMirror2
 
+![](Capture.png) 
+
+
 # Just install it.....
 
     ~/MagicMirror/modules
@@ -17,3 +20,5 @@ Random Facts for MagicMirror2
            },
            
   NO kidding, just that simple!!!
+
+ 
