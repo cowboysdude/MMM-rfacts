@@ -41,7 +41,7 @@ Module.register("MMM-rfacts", {
 
         if (!this.loaded) {
             wrapper.classList.add("wrapper");
-            wrapper.innerHTML = "Forecasting ...";
+            wrapper.innerHTML = "Getting a Fact ...";
             wrapper.className = "bright light small";
             return wrapper;
         }

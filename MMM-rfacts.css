@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Sansita');
 
+.MMM-rfacts {
+    width: 325px;	
+}
 .MMM-rfacts .title {
 	font-size: 22px;
 	font-family: 'Oswald', sans-serif;
