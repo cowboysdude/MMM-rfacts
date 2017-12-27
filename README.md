@@ -1,7 +1,7 @@
 # MMM-rfacts
 Random Facts for MagicMirror2
 
-![](Capture.PNG) 
+![](Capture.PNG)  ![](Capture1.PNG)
 
 
 # Just install it.....
