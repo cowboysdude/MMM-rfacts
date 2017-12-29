@@ -28,5 +28,6 @@ Random Facts for MagicMirror2
 	  Chinese
 	  Spanish
 	  French
+	  Korean
 	  and others!  
  
