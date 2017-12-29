@@ -25,12 +25,12 @@ module.exports = NodeHelper.create({
                 parser(body, (err, result) => {
                     if (result.hasOwnProperty('facts')) {
                         var result = JSON.parse(JSON.stringify(result.facts.fact));
-                        console.log(result);
+                       // console.log(result);
                         for (var i = 0; i < 1; i++) {
                             var result = result[i];
-                            console.log("Fact(" + i + ") found ....");
+                         //   console.log("Fact(" + i + ") found ....");
                             if (this.config.lang != 'en') {
-                                console.log("in Translation...");
+                           //     console.log("in Translation...");
                                 Promise.all([
                                     translate(result, {
                                         from: 'en',
@@ -38,7 +38,7 @@ module.exports = NodeHelper.create({
                                     })
                                 ]).then(function(results) {
                                     var results = results;
-                                    console.log(results);
+                             //       console.log(results);
                                     self.sendSocketNotification("FACT_RESULT", results);
                                 })
                             } else {
