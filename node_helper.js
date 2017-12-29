@@ -7,7 +7,7 @@
 const NodeHelper = require('node_helper');
 const request = require('request');
 const parser = require('xml2js').parseString;
-
+const translate = require('google-translate-api');
 
 module.exports = NodeHelper.create({
 
@@ -16,6 +16,7 @@ module.exports = NodeHelper.create({
     },
 
     getFact: function(url) {
+        var self = this;
         request({
             url: "http://www.fayd.org/api/fact.xml",
             method: 'GET'
@@ -23,8 +24,27 @@ module.exports = NodeHelper.create({
             if (!error && response.statusCode === 200) {
                 parser(body, (err, result) => {
                     if (result.hasOwnProperty('facts')) {
-                        var result = JSON.parse(JSON.stringify(result.facts));
-                        this.sendSocketNotification("FACT_RESULT", result);
+                        var result = JSON.parse(JSON.stringify(result.facts.fact));
+                        console.log(result);
+                        for (var i = 0; i < 1; i++) {
+                            var result = result[i];
+                            console.log("Fact(" + i + ") found ....");
+                            if (this.config.lang != 'en') {
+                                console.log("in Translation...");
+                                Promise.all([
+                                    translate(result, {
+                                        from: 'en',
+                                        to: this.config.lang
+                                    })
+                                ]).then(function(results) {
+                                    var results = results;
+                                    console.log(results);
+                                    self.sendSocketNotification("FACT_RESULT", results);
+                                })
+                            } else {
+                                self.sendSocketNotification("FACT_RESULT", result);
+                            }
+                        }
                     }
                 });
             }
@@ -33,7 +53,9 @@ module.exports = NodeHelper.create({
 
     //Subclass socketNotificationReceived received.
     socketNotificationReceived: function(notification, payload) {
-        if (notification === 'GET_FACT') {
+        if (notification === 'CONFIG') {
+            this.config = payload;
+        } else if (notification === 'GET_FACT') {
             this.getFact(payload);
         }
     }

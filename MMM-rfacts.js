@@ -18,10 +18,26 @@ Module.register("MMM-rfacts", {
     getStyles: function() {
         return ["MMM-rfacts.css"];
     },
+    
+     getTranslations: function() {
+        return {
+            en: "translations/en.json",
+            da: "translations/da.json",
+            sv: "translations/sv.json",
+            de: "translations/de.json",
+            es: "translations/es.json",
+            fr: "translations/fr.json",
+            zh_cn: "translations/zh_cn.json",
+            nl: "translations/nl.json",
+            nb: "translations/nb.json"
+        };
+    },
 
     // Define start sequence.
     start: function() {
         Log.info("Starting module: " + this.name);
+        this.config.lang = this.config.lang || config.language; 
+		this.sendSocketNotification("CONFIG", this.config);
 
         // Set locale. 
         this.today = "";
@@ -41,7 +57,7 @@ Module.register("MMM-rfacts", {
 
         if (!this.loaded) {
             wrapper.classList.add("wrapper");
-            wrapper.innerHTML = "Getting a Fact ...";
+            wrapper.innerHTML = this.translate("Getting a Fact ...");
             wrapper.className = "bright light small";
             return wrapper;
         }
@@ -51,12 +67,16 @@ Module.register("MMM-rfacts", {
 
         var title = document.createElement("div");
         title.classList.add("xsmall", "bright", "title");
-        title.innerHTML = "Random Fact";
+        title.innerHTML = this.translate("Random Fact");
         top.appendChild(title);
 
         var des = document.createElement("div");
         des.classList.add("small", "bright", "description");
-        des.innerHTML = fact.fact[0];
+        if (this.config.lang !== 'en'){
+		des.innerHTML = fact[0]['text'];	
+		} else {
+		des.innerHTML = fact;	
+		}
         top.appendChild(des);
 
         wrapper.appendChild(top);
