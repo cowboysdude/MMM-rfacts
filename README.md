@@ -21,4 +21,12 @@ Random Facts for MagicMirror2
            
   NO kidding, just that simple!!!
 
+There are translation files for
+        German
+	Swedish
+	Danish
+	Chinese
+	Spanish
+	French
+	and others!  
  
