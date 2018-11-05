@@ -11,18 +11,22 @@ Random Facts for MagicMirror2
     cd MagicMirror/modules/MMM-rfacts
     npm install
     
-#  Add it to your config...
+#  Add to config.js
 
-          {
-	      	  disabled: false,
+           {
+	        disabled: false,
             module: 'MMM-rfacts',
-            position: 'bottom_bar'
+            position: 'bottom_bar',
+	        config:
+	    	 {
+		  lang: "en",  //facts will be translated to this language according to ISO-639-1 code 
+		 }
            },
            
   NO kidding, just that simple!!!
 
 # There are translation files for
-          German
+      German
 	  Swedish
 	  Danish
 	  Chinese
