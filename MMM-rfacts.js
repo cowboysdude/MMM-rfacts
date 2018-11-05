@@ -30,7 +30,7 @@ Module.register("MMM-rfacts", {
             zh_cn: "translations/zh_cn.json",
             nl: "translations/nl.json",
             nb: "translations/nb.json",
-	      ar: "translations/ar.json"
+	    ar: "translations/ar.json"
         };
     },
 
