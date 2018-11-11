@@ -16,16 +16,7 @@ Random Facts for MagicMirror2
            {
 	        disabled: false,
             module: 'MMM-rfacts',
-            position: 'bottom_bar',
-	        config:
-	    	 {
-		  lang: "en",  //facts will be translated to this language according to ISO-639-1 code 
-		  updateInterval: 10 * 60 * 1000, // every 10 minutes
-        	  animationSpeed: 10,
-        	  initialLoadDelay: 875, // 0 seconds delay
-        	  retryDelay: 1500,
-		  fadeSpeed: 7
-		 }
+            position: 'top_left' 
            },
            
   NO kidding, just that simple!!!
