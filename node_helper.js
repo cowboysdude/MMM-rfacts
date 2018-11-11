@@ -7,7 +7,7 @@
 const NodeHelper = require('node_helper');
 const request = require('request');
 const parser = require('xml2js').parseString;
-const translate = require('google-translate-api');
+const translate = require('google-translate-api'); 
 
 module.exports = NodeHelper.create({
 
@@ -28,14 +28,11 @@ module.exports = NodeHelper.create({
                         var result = JSON.parse(JSON.stringify(result.facts.fact));
                         for (var i = 0; i < 1; i++) {
                             var result = result[i];
-                            if (this.config.lang != 'en') {
+                            if (config.language != 'en') {
                                 Promise.all([
-                                    translate(result, {
-                                        from: 'en',
-                                        to: this.config.lang
-                                    })
-                                ]).then(function(results) {
-                                    var results = results;
+                                    translate(result, { from: 'en', to: config.language })
+                                ]).then(function(result) {
+                                    var results = JSON.stringify(result[0].text); 
                                     self.sendSocketNotification("FACT_RESULT", results);
                                 })
                             } else {
