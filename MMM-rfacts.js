@@ -72,14 +72,8 @@ Module.register("MMM-rfacts", {
         top.appendChild(title);
 
         var des = document.createElement("div");
-        des.classList.add("small", "bright", "description");
-       
-		if (this.config.lang !== 'en'){
-		des.innerHTML = fact;	
-		} else {
-		des.innerHTML = fact;	
-		}
-		console.log(des.innerHTML);
+        des.classList.add("small", "bright", "description"); 
+		des.innerHTML = fact; 
         top.appendChild(des);
  
         wrapper.appendChild(top);
