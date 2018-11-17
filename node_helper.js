@@ -33,6 +33,7 @@ module.exports = NodeHelper.create({
                                     translate(result, { from: 'en', to: config.language })
                                 ]).then(function(result) {
                                     var results = JSON.stringify(result[0].text); 
+									console.log(results);
                                     self.sendSocketNotification("FACT_RESULT", results);
                                 })
                             } else {

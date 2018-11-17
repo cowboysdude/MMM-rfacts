@@ -75,7 +75,7 @@ Module.register("MMM-rfacts", {
         des.classList.add("small", "bright", "description");
        
 		if (this.config.lang !== 'en'){
-		des.innerHTML = fact[0]['text'];	
+		des.innerHTML = fact;	
 		} else {
 		des.innerHTML = fact;	
 		}
@@ -90,6 +90,7 @@ Module.register("MMM-rfacts", {
     processFacts: function(data) {
         this.today = data.Today;
         this.fact = data; 
+		console.log(this.fact);
         this.loaded = true;
     },
 
