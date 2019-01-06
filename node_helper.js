@@ -22,22 +22,23 @@ module.exports = NodeHelper.create({
             url: "http://www.fayd.org/api/fact.xml",
             method: 'GET'
         }, (error, response, body) => {
+			console.log(body);
             if (!error && response.statusCode === 200) {
                 parser(body, (err, result) => {
                     if (result.hasOwnProperty('facts')) {
                         var result = JSON.parse(JSON.stringify(result.facts.fact));
                         for (var i = 0; i < 1; i++) {
-                            var result = result[i];
+                            var result = result[i]; 
                             if (config.language != 'en') {
                                 Promise.all([
                                     translate(result, { from: 'en', to: config.language })
                                 ]).then(function(result) {
-                                    var results = JSON.stringify(result[0].text); 
-									console.log(results);
+                                    var results = JSON.stringify(result[0].text);  
                                     self.sendSocketNotification("FACT_RESULT", results);
                                 })
                             } else {
                                 self.sendSocketNotification("FACT_RESULT", result);
+								console.log(result);
                             }
                         }
                     }

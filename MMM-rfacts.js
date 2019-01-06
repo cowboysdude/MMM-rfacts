@@ -8,7 +8,7 @@ Module.register("MMM-rfacts", {
 
     // Module config defaults.
     defaults: {
-        updateInterval: 10  * 1000, // every 10 minutes
+        updateInterval: 120 * 60 * 1000, // every 10 minutes
         animationSpeed: 10,
         initialLoadDelay: 875, // 0 seconds delay
         retryDelay: 1500,
