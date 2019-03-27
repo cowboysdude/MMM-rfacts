@@ -35,10 +35,13 @@ module.exports = NodeHelper.create({
                                 ]).then(function(result) {
                                     var results = JSON.stringify(result[0].text);  
                                     self.sendSocketNotification("FACT_RESULT", results);
+                                }).catch(function(e) {
+                                    console.log("[MMM-rfacts] Translation ERROR! Translation failed, will fall back to English.");
+				    self.sendSocketNotification("FACT_RESULT", result);
                                 })
                             } else {
                                 self.sendSocketNotification("FACT_RESULT", result);
-								console.log(result);
+                                console.log(result);
                             }
                         }
                     }
