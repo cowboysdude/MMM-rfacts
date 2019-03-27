@@ -7,7 +7,7 @@
 const NodeHelper = require('node_helper');
 const request = require('request');
 const parser = require('xml2js').parseString;
-const translate = require('google-translate-api');
+const translate = require('google-translate-api'); 
 
 module.exports = NodeHelper.create({
 
@@ -22,24 +22,26 @@ module.exports = NodeHelper.create({
             url: "http://www.fayd.org/api/fact.xml",
             method: 'GET'
         }, (error, response, body) => {
+			console.log(body);
             if (!error && response.statusCode === 200) {
                 parser(body, (err, result) => {
                     if (result.hasOwnProperty('facts')) {
                         var result = JSON.parse(JSON.stringify(result.facts.fact));
                         for (var i = 0; i < 1; i++) {
-                            var result = result[i];
-                            if (this.config.lang != 'en') {
+                            var result = result[i]; 
+                            if (config.language != 'en') {
                                 Promise.all([
-                                    translate(result, {
-                                        from: 'en',
-                                        to: this.config.lang
-                                    })
-                                ]).then(function(results) {
-                                    var results = results;
+                                    translate(result, { from: 'en', to: config.language })
+                                ]).then(function(result) {
+                                    var results = JSON.stringify(result[0].text);  
                                     self.sendSocketNotification("FACT_RESULT", results);
+                                }).catch(function(e) {
+                                    console.log("[MMM-rfacts] Translation ERROR! Translation failed, will fall back to English.");
+				    self.sendSocketNotification("FACT_RESULT", result);
                                 })
                             } else {
                                 self.sendSocketNotification("FACT_RESULT", result);
+                                console.log(result);
                             }
                         }
                     }

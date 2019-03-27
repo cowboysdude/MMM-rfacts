@@ -7,22 +7,22 @@ Random Facts for MagicMirror2
 # Just install it.....
 
     ~/MagicMirror/modules
-    git clone https://github.com/cowboysdude/MMM-rfact
+    git clone https://github.com/cowboysdude/MMM-rfacts
     cd MagicMirror/modules/MMM-rfacts
     npm install
     
-#  Add it to your config...
+#  Add to config.js
 
-          {
-	      	  disabled: false,
+           {
+	        disabled: false,
             module: 'MMM-rfacts',
-            position: 'bottom_bar'
+            position: 'top_left' 
            },
            
   NO kidding, just that simple!!!
 
 # There are translation files for
-          German
+      German
 	  Swedish
 	  Danish
 	  Chinese

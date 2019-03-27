@@ -21,6 +21,7 @@
   "homepage": "https://github.com/cowboysdude/MMM-rfacts#readme",
   "dependencies": {
     "google-translate-api": "^2.3.0",
+    "promises-all": "^1.0.0",
     "request": "^2.83.0",
     "xml2js": "^0.4.19"
   }

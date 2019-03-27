@@ -8,7 +8,7 @@ Module.register("MMM-rfacts", {
 
     // Module config defaults.
     defaults: {
-        updateInterval: 10 * 60 * 1000, // every 10 minutes
+        updateInterval: 120 * 60 * 1000, // every 10 minutes
         animationSpeed: 10,
         initialLoadDelay: 875, // 0 seconds delay
         retryDelay: 1500,
@@ -29,7 +29,8 @@ Module.register("MMM-rfacts", {
             fr: "translations/fr.json",
             zh_cn: "translations/zh_cn.json",
             nl: "translations/nl.json",
-            nb: "translations/nb.json"
+            nb: "translations/nb.json",
+	        ar: "translations/ar.json"
         };
     },
 
@@ -71,14 +72,10 @@ Module.register("MMM-rfacts", {
         top.appendChild(title);
 
         var des = document.createElement("div");
-        des.classList.add("small", "bright", "description");
-        if (this.config.lang !== 'en'){
-		des.innerHTML = fact[0]['text'];	
-		} else {
-		des.innerHTML = fact;	
-		}
+        des.classList.add("small", "bright", "description"); 
+		des.innerHTML = fact; 
         top.appendChild(des);
-
+ 
         wrapper.appendChild(top);
         return wrapper;
 
@@ -86,8 +83,8 @@ Module.register("MMM-rfacts", {
 
     processFacts: function(data) {
         this.today = data.Today;
-        this.fact = data;
-        console.log(this.fact);
+        this.fact = data; 
+		console.log(this.fact);
         this.loaded = true;
     },
 
