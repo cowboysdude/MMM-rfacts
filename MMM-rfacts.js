@@ -2,7 +2,7 @@
  * Module: MMM-rfacts
  *
  * By cowboysdude
- * 
+ *
  */
 Module.register("MMM-rfacts", {
 
@@ -18,7 +18,7 @@ Module.register("MMM-rfacts", {
     getStyles: function() {
         return ["MMM-rfacts.css"];
     },
-    
+
      getTranslations: function() {
         return {
             en: "translations/en.json",
@@ -37,10 +37,10 @@ Module.register("MMM-rfacts", {
     // Define start sequence.
     start: function() {
         Log.info("Starting module: " + this.name);
-        this.config.lang = this.config.lang || config.language; 
+        this.config.lang = this.config.lang || config.language;
 		this.sendSocketNotification("CONFIG", this.config);
 
-        // Set locale. 
+        // Set locale.
         this.today = "";
         this.scheduleUpdate();
     },
@@ -72,10 +72,10 @@ Module.register("MMM-rfacts", {
         top.appendChild(title);
 
         var des = document.createElement("div");
-        des.classList.add("small", "bright", "description"); 
-		des.innerHTML = fact; 
+        des.classList.add("small", "bright", "description");
+		des.innerHTML = fact;
         top.appendChild(des);
- 
+
         wrapper.appendChild(top);
         return wrapper;
 
@@ -83,7 +83,7 @@ Module.register("MMM-rfacts", {
 
     processFacts: function(data) {
         this.today = data.Today;
-        this.fact = data; 
+        this.fact = data;
 		console.log(this.fact);
         this.loaded = true;
     },
