@@ -31,7 +31,7 @@ module.exports = NodeHelper.create({
                             var result = results[i];
                             if (config.language != 'en') {
                                 Promise.all([
-                                    translate(result, { from: 'en', to: config.language })
+                                    translate(result, { from: 'en', to: config.language, client: 'gtx' })
                                 ]).then(function(result) {
                                     var results = JSON.stringify(result[0].text);
                                     self.sendSocketNotification("FACT_RESULT", results);
