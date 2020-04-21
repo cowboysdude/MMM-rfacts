@@ -22,8 +22,6 @@
   "dependencies": {
     "@vitalets/google-translate-api": "^3.0.0",
     "promises-all": "^1.0.0",
-    "request": "^2.83.0",
-    "safe-eval": "^0.4.1",
-    "xml2js": "^0.4.19"
+    "safe-eval": "^0.4.1"
   }
 }

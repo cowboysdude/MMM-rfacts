@@ -5,14 +5,11 @@
  *
  */
 Module.register("MMM-rfacts", {
-
-    // Module config defaults.
+     
     defaults: {
-        updateInterval: 120 * 60 * 1000, // every 10 minutes
-        animationSpeed: 10,
-        initialLoadDelay: 875, // 0 seconds delay
-        retryDelay: 1500,
-        fadeSpeed: 7
+        updateInterval: 120 * 60 * 1000,
+        animationSpeed: 1000,
+        initialLoadDelay: 875 
     },
 
     getStyles: function() {
@@ -31,7 +28,7 @@ Module.register("MMM-rfacts", {
             nl: "translations/nl.json",
             nb: "translations/nb.json",
 	        ar: "translations/ar.json"
-        };
+        } 
     },
 
     // Define start sequence.
@@ -46,9 +43,7 @@ Module.register("MMM-rfacts", {
     },
 
 
-    getDom: function() {
-
-
+    getDom: function() { 
         var fact = this.fact;
 
 
@@ -73,7 +68,7 @@ Module.register("MMM-rfacts", {
 
         var des = document.createElement("div");
         des.classList.add("small", "bright", "description");
-		des.innerHTML = fact;
+		des.innerHTML = fact.data;
         top.appendChild(des);
 
         wrapper.appendChild(top);
