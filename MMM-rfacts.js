@@ -5,7 +5,7 @@
  *
  */
 Module.register("MMM-rfacts", {
-     
+
     defaults: {
         updateInterval: 120 * 60 * 1000,
         animationSpeed: 1000,
@@ -68,7 +68,7 @@ Module.register("MMM-rfacts", {
 
         var des = document.createElement("div");
         des.classList.add("small", "bright", "description");
-		des.innerHTML = fact.data;
+        des.innerHTML = fact;
         top.appendChild(des);
 
         wrapper.appendChild(top);
@@ -77,10 +77,10 @@ Module.register("MMM-rfacts", {
     },
 
     processFacts: function(data) {
-        this.today = data.Today;
         this.fact = data;
-		console.log(this.fact);
+        console.log(this.fact);
         this.loaded = true;
+        this.updateDom(this.config.animationSpeed);
     },
 
     scheduleUpdate: function() {
@@ -97,7 +97,6 @@ Module.register("MMM-rfacts", {
     socketNotificationReceived: function(notification, payload) {
         if (notification === "FACT_RESULT") {
             this.processFacts(payload);
-            this.updateDom(this.config.animationSpeed);
         }
         this.updateDom(this.config.initialLoadDelay);
     },
