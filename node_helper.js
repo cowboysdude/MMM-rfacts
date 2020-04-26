@@ -15,41 +15,42 @@ module.exports = NodeHelper.create({
     },
 
 
-  getFact: function(url) {
+  getFact: function() {
+    console.log("Getting fact!");
     var self = this;
     request({
-        url: "https://useless-facts.sameerkumar.website/api",
+        url: "https://uselessfacts.jsph.pl/random.json",
         method: 'GET'
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-            var result = JSON.parse(body);
-            if (config.language != 'en') {
-                Promise.all([
-                    translate(result, {
-                        from: 'en',
-                        to: config.language,
-                        client: 'gtx'
-                    })
-                ]).then(function(result) {
-                    var results = JSON.stringify(result[0].data);
-                    self.sendSocketNotification("FACT_RESULT", results);
-                }).catch(function(e) {
-                    console.log("[MMM-rfacts] Translation ERROR! Translation failed, will fall back to English.");
-                    self.sendSocketNotification("FACT_RESULT", result);
-                });
-            } else {
-                self.sendSocketNotification("FACT_RESULT", result);
-            }
-        }
+            var apiResponse = JSON.parse(body);
+            translate(apiResponse.text, {
+                from: apiResponse.language,
+                to: config.language,
+                client: 'gtx'
+            }).then(function(result) {
+                var fact = result.text
+                self.sendSocketNotification("FACT_RESULT", fact);
+            }).catch(function(err) {
+                console.error("[MMM-rfacts] Translation ERROR! Translation failed, will fall back to original language!");
+                console.error(JSON.stringify(err));
+                self.sendSocketNotification("FACT_RESULT", apiResponse.text);
+            });
+        } else {
+            console.error("API Error: Wrong response code: "+response.statusCode);
+            console.error(JSON.stringify(response));
+            console.error(JSON.stringify(error));
+            self.sendSocketNotification("FACT_RESULT", "API ERROR!");
+        };
     });
-}, 
+},
 
     //Subclass socketNotificationReceived received.
     socketNotificationReceived: function(notification, payload) {
         if (notification === 'CONFIG') {
             this.config = payload;
         } else if (notification === 'GET_FACT') {
-            this.getFact(payload);
+            this.getFact();
         }
     }
 });
