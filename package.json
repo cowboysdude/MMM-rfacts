@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/cowboysdude/MMM-rfacts#readme",
   "dependencies": {
-    "@vitalets/google-translate-api": "^3.0.0",
+    "@vitalets/google-translate-api": "^4.0.0",
     "promises-all": "^1.0.0",
     "safe-eval": "^0.4.1"
   }
